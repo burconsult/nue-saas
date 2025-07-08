@@ -1,0 +1,26 @@
+{
+  "name": "nue-saas-boilerplate",
+  "version": "1.0.0",
+  "description": "Complete SAAS Boilerplate built with Nue.js",
+  "type": "module",
+  "scripts": {
+    "dev": "nue serve --dev",
+    "build": "nue build",
+    "build:production": "nue build --production",
+    "serve": "nue serve",
+    "stats": "nue stats"
+  },
+  "keywords": ["nue", "saas", "boilerplate", "webapp", "frontend"],
+  "author": "Nue SAAS Boilerplate",
+  "license": "MIT",
+  "dependencies": {
+    "nuekit": "^0.1.1"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0"
+  },
+  "engines": {
+    "node": ">=18",
+    "bun": ">=1.0"
+  }
+}

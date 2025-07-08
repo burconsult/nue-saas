@@ -1,0 +1,420 @@
+---
+title: Dashboard
+description: Your application overview and key metrics at a glance.
+layout: dashboard
+subtitle: Welcome back! Here's what's happening with your account.
+---
+
+<!-- Welcome Banner (if new user) -->
+<div class="alert alert-info mb-lg" :if="isWelcome">
+  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+    <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+    <polyline points="22,4 12,14.01 9,11.01"/>
+  </svg>
+  <div>
+    <p class="font-medium">Welcome to Nue SAAS!</p>
+    <p class="text-sm">Your account has been successfully created. Let's get you started with your first project.</p>
+  </div>
+  <button @click="dismissWelcome" class="btn btn-sm btn-outline ml-auto">
+    Get Started
+  </button>
+</div>
+
+<!-- Quick Stats -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-lg mb-xl">
+  <!-- Total Projects -->
+  <div class="card">
+    <div class="card-body">
+      <div class="flex items-center justify-between">
+        <div>
+          <p class="text-neutral-600 text-sm">Total Projects</p>
+          <p class="text-2xl font-bold text-neutral-900">{stats.totalProjects}</p>
+        </div>
+        <div class="w-12 h-12 bg-primary-100 rounded-lg flex items-center justify-center">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" class="text-primary-600">
+            <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/>
+          </svg>
+        </div>
+      </div>
+      <div class="flex items-center mt-2 text-sm">
+        <span class="text-success-600 flex items-center gap-1">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+            <polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/>
+            <polyline points="17 6 23 6 23 12"/>
+          </svg>
+          +12%
+        </span>
+        <span class="text-neutral-500 ml-1">from last month</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Active Users -->
+  <div class="card">
+    <div class="card-body">
+      <div class="flex items-center justify-between">
+        <div>
+          <p class="text-neutral-600 text-sm">Active Users</p>
+          <p class="text-2xl font-bold text-neutral-900">{stats.activeUsers}</p>
+        </div>
+        <div class="w-12 h-12 bg-success-100 rounded-lg flex items-center justify-center">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" class="text-success-600">
+            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+            <circle cx="9" cy="7" r="4"/>
+            <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+            <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+          </svg>
+        </div>
+      </div>
+      <div class="flex items-center mt-2 text-sm">
+        <span class="text-success-600 flex items-center gap-1">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+            <polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/>
+            <polyline points="17 6 23 6 23 12"/>
+          </svg>
+          +8%
+        </span>
+        <span class="text-neutral-500 ml-1">from last week</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Revenue -->
+  <div class="card">
+    <div class="card-body">
+      <div class="flex items-center justify-between">
+        <div>
+          <p class="text-neutral-600 text-sm">Monthly Revenue</p>
+          <p class="text-2xl font-bold text-neutral-900">${stats.revenue}</p>
+        </div>
+        <div class="w-12 h-12 bg-warning-100 rounded-lg flex items-center justify-center">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" class="text-warning-600">
+            <line x1="12" y1="1" x2="12" y2="23"/>
+            <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>
+          </svg>
+        </div>
+      </div>
+      <div class="flex items-center mt-2 text-sm">
+        <span class="text-success-600 flex items-center gap-1">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+            <polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/>
+            <polyline points="17 6 23 6 23 12"/>
+          </svg>
+          +23%
+        </span>
+        <span class="text-neutral-500 ml-1">from last month</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- API Calls -->
+  <div class="card">
+    <div class="card-body">
+      <div class="flex items-center justify-between">
+        <div>
+          <p class="text-neutral-600 text-sm">API Calls</p>
+          <p class="text-2xl font-bold text-neutral-900">{stats.apiCalls}</p>
+        </div>
+        <div class="w-12 h-12 bg-error-100 rounded-lg flex items-center justify-center">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" class="text-error-600">
+            <circle cx="12" cy="12" r="10"/>
+            <line x1="2" y1="12" x2="22" y2="12"/>
+            <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
+          </svg>
+        </div>
+      </div>
+      <div class="flex items-center mt-2 text-sm">
+        <span class="text-error-600 flex items-center gap-1">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+            <polyline points="23 18 13.5 8.5 8.5 13.5 1 6"/>
+            <polyline points="17 18 23 18 23 12"/>
+          </svg>
+          -3%
+        </span>
+        <span class="text-neutral-500 ml-1">from last week</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Main Content Grid -->
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-lg">
+  <!-- Left Column -->
+  <div class="lg:col-span-2 space-y-lg">
+    <!-- Usage Chart -->
+    <div class="card">
+      <div class="card-header">
+        <div class="flex items-center justify-between">
+          <h3 class="card-title">Usage Overview</h3>
+          <div class="flex items-center gap-sm">
+            <select class="form-select text-sm">
+              <option value="7d">Last 7 days</option>
+              <option value="30d">Last 30 days</option>
+              <option value="90d">Last 90 days</option>
+            </select>
+          </div>
+        </div>
+      </div>
+      <div class="card-body">
+        <!-- Simple chart placeholder -->
+        <div class="h-64 bg-neutral-100 rounded-lg flex items-center justify-center">
+          <div class="text-center">
+            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" class="text-neutral-400 mx-auto mb-2">
+              <line x1="18" y1="20" x2="18" y2="10"/>
+              <line x1="12" y1="20" x2="12" y2="4"/>
+              <line x1="6" y1="20" x2="6" y2="14"/>
+            </svg>
+            <p class="text-neutral-500">Chart visualization would go here</p>
+            <p class="text-xs text-neutral-400">Integrate with Chart.js or similar</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Recent Projects -->
+    <div class="card">
+      <div class="card-header">
+        <div class="flex items-center justify-between">
+          <h3 class="card-title">Recent Projects</h3>
+          <a href="/projects" class="btn btn-sm btn-outline">View All</a>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="space-y-md">
+          <div :for="project in recentProjects" class="flex items-center gap-md p-md rounded-lg hover:bg-neutral-50 transition-colors">
+            <div class="w-10 h-10 rounded-lg flex items-center justify-center" :style="`background-color: ${project.color}20`">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" :style="`color: ${project.color}`">
+                <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/>
+              </svg>
+            </div>
+            <div class="flex-1">
+              <h4 class="font-medium text-neutral-900">{project.name}</h4>
+              <p class="text-sm text-neutral-600">{project.description}</p>
+            </div>
+            <div class="text-right">
+              <div class="badge" :class="project.status === 'active' ? 'badge-success' : project.status === 'paused' ? 'badge-warning' : 'badge-neutral'">
+                {project.status}
+              </div>
+              <p class="text-xs text-neutral-500 mt-1">Updated {project.updated}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Right Column -->
+  <div class="space-y-lg">
+    <!-- Quick Actions -->
+    <div class="card">
+      <div class="card-header">
+        <h3 class="card-title">Quick Actions</h3>
+      </div>
+      <div class="card-body">
+        <div class="space-y-sm">
+          <button class="btn btn-primary btn-full">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+              <line x1="12" y1="5" x2="12" y2="19"/>
+              <line x1="5" y1="12" x2="19" y2="12"/>
+            </svg>
+            Create New Project
+          </button>
+          <button class="btn btn-outline btn-full">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+              <path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/>
+              <rect x="8" y="2" width="8" height="4" rx="1" ry="1"/>
+            </svg>
+            View Documentation
+          </button>
+          <button class="btn btn-outline btn-full">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+              <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+            </svg>
+            Contact Support
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Recent Activity -->
+    <div class="card">
+      <div class="card-header">
+        <h3 class="card-title">Recent Activity</h3>
+      </div>
+      <div class="card-body">
+        <div class="space-y-md">
+          <div :for="activity in recentActivity" class="flex items-start gap-sm">
+            <div class="w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0" :style="`background-color: ${activity.color}20`">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" :style="`color: ${activity.color}`">
+                <path :d="activity.icon"/>
+              </svg>
+            </div>
+            <div class="flex-1 min-w-0">
+              <p class="text-sm font-medium text-neutral-900">{activity.title}</p>
+              <p class="text-xs text-neutral-600">{activity.description}</p>
+              <p class="text-xs text-neutral-500 mt-1">{activity.time}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Usage Limits -->
+    <div class="card">
+      <div class="card-header">
+        <h3 class="card-title">Usage Limits</h3>
+      </div>
+      <div class="card-body">
+        <div class="space-y-md">
+          <!-- API Calls -->
+          <div>
+            <div class="flex items-center justify-between mb-xs">
+              <span class="text-sm font-medium">API Calls</span>
+              <span class="text-xs text-neutral-500">{usageLimits.apiCalls.used} / {usageLimits.apiCalls.limit}</span>
+            </div>
+            <div class="progress">
+              <div class="progress-bar" :style="`width: ${(usageLimits.apiCalls.used / usageLimits.apiCalls.limit) * 100}%`"></div>
+            </div>
+          </div>
+
+          <!-- Storage -->
+          <div>
+            <div class="flex items-center justify-between mb-xs">
+              <span class="text-sm font-medium">Storage</span>
+              <span class="text-xs text-neutral-500">{usageLimits.storage.used}GB / {usageLimits.storage.limit}GB</span>
+            </div>
+            <div class="progress">
+              <div class="progress-bar" :style="`width: ${(usageLimits.storage.used / usageLimits.storage.limit) * 100}%`"></div>
+            </div>
+          </div>
+
+          <!-- Team Members -->
+          <div>
+            <div class="flex items-center justify-between mb-xs">
+              <span class="text-sm font-medium">Team Members</span>
+              <span class="text-xs text-neutral-500">{usageLimits.teamMembers.used} / {usageLimits.teamMembers.limit}</span>
+            </div>
+            <div class="progress">
+              <div class="progress-bar" :style="`width: ${(usageLimits.teamMembers.used / usageLimits.teamMembers.limit) * 100}%`"></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="mt-md pt-md border-t border-neutral-200">
+          <a href="/billing" class="btn btn-sm btn-outline btn-full">
+            Upgrade Plan
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  // Check if this is a welcome visit
+  const urlParams = new URLSearchParams(window.location.search)
+  let isWelcome = urlParams.get('welcome') === 'true'
+
+  // Dashboard stats
+  const stats = {
+    totalProjects: 12,
+    activeUsers: 1248,
+    revenue: '4,320',
+    apiCalls: '89.2K'
+  }
+
+  // Recent projects data
+  const recentProjects = [
+    {
+      name: 'E-commerce Platform',
+      description: 'Modern online store with React frontend',
+      status: 'active',
+      updated: '2 hours ago',
+      color: '#10B981'
+    },
+    {
+      name: 'Mobile App Backend',
+      description: 'REST API for iOS and Android apps',
+      status: 'active',
+      updated: '1 day ago',
+      color: '#3B82F6'
+    },
+    {
+      name: 'Analytics Dashboard',
+      description: 'Real-time data visualization tool',
+      status: 'paused',
+      updated: '3 days ago',
+      color: '#F59E0B'
+    },
+    {
+      name: 'Legacy Migration',
+      description: 'Database migration project',
+      status: 'completed',
+      updated: '1 week ago',
+      color: '#6B7280'
+    }
+  ]
+
+  // Recent activity data
+  const recentActivity = [
+    {
+      title: 'New user registered',
+      description: 'john@example.com joined your team',
+      time: '2 hours ago',
+      color: '#10B981',
+      icon: 'M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2'
+    },
+    {
+      title: 'Project deployed',
+      description: 'E-commerce Platform v2.1.0',
+      time: '4 hours ago',
+      color: '#3B82F6',
+      icon: 'M7 16l-4-4m0 0l4-4m-4 4h18'
+    },
+    {
+      title: 'Payment received',
+      description: '$79.00 for Pro plan',
+      time: '1 day ago',
+      color: '#10B981',
+      icon: 'M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1'
+    },
+    {
+      title: 'API key rotated',
+      description: 'Security key updated successfully',
+      time: '2 days ago',
+      color: '#F59E0B',
+      icon: 'M15 7a2 2 0 012 2m0 0a2 2 0 012 2 2 2 0 01-2 2m-2-4a2 2 0 00-2 2 2 2 0 002 2m0 0V9a2 2 0 012-2 2 2 0 012 2v10a2 2 0 01-2 2 2 2 0 01-2-2V9z'
+    }
+  ]
+
+  // Usage limits data
+  const usageLimits = {
+    apiCalls: {
+      used: 89200,
+      limit: 100000
+    },
+    storage: {
+      used: 4.2,
+      limit: 10
+    },
+    teamMembers: {
+      used: 3,
+      limit: 10
+    }
+  }
+
+  // Dismiss welcome banner
+  function dismissWelcome() {
+    isWelcome = false
+    // Remove from URL
+    const url = new URL(window.location)
+    url.searchParams.delete('welcome')
+    window.history.replaceState({}, '', url)
+  }
+
+  // Initialize dashboard
+  document.addEventListener('DOMContentLoaded', () => {
+    // Any additional initialization
+    console.log('Dashboard loaded')
+  })
+</script>

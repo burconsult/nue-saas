@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="{description}">
+  <title>{title} | Nue SAAS Dashboard</title>
+  
+  <!-- Primary CSS (critical path) -->
+  <style>{ primary_css }</style>
+  
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  
+  <!-- Meta tags for dashboard -->
+  <meta name="robots" content="noindex, nofollow">
+</head>
+<body class="bg-neutral-50">
+  <div class="sidebar-layout">
+    <!-- Sidebar -->
+    <aside class="sidebar" id="sidebar">
+      <!-- Logo -->
+      <div class="flex items-center gap-sm mb-xl">
+        <svg width="24" height="24" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect width="32" height="32" rx="8" fill="var(--primary-600)"/>
+          <path d="M8 24V8h4l8 12V8h4v16h-4L12 12v12H8z" fill="white"/>
+        </svg>
+        <span class="font-semibold text-lg">Nue SAAS</span>
+      </div>
+
+      <!-- Navigation -->
+      <nav class="space-y-xs">
+        <!-- Main Navigation -->
+        <div class="mb-lg">
+          <div class="text-xs font-semibold text-neutral-500 uppercase tracking-wider mb-sm px-sm">
+            Main
+          </div>
+          <ul class="space-y-xs">
+            <li>
+              <a href="/dashboard" class="nav-item" :class="{active: currentPath === '/dashboard'}">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                  <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
+                  <line x1="9" y1="9" x2="15" y2="9"/>
+                  <line x1="9" y1="15" x2="15" y2="15"/>
+                </svg>
+                <span>Dashboard</span>
+              </a>
+            </li>
+            <li>
+              <a href="/analytics" class="nav-item" :class="{active: currentPath === '/analytics'}">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                  <line x1="18" y1="20" x2="18" y2="10"/>
+                  <line x1="12" y1="20" x2="12" y2="4"/>
+                  <line x1="6" y1="20" x2="6" y2="14"/>
+                </svg>
+                <span>Analytics</span>
+              </a>
+            </li>
+            <li>
+              <a href="/projects" class="nav-item" :class="{active: currentPath.startsWith('/projects')}">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                  <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/>
+                </svg>
+                <span>Projects</span>
+              </a>
+            </li>
+            <li>
+              <a href="/team" class="nav-item" :class="{active: currentPath === '/team'}">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                  <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+                  <circle cx="9" cy="7" r="4"/>
+                  <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+                  <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+                </svg>
+                <span>Team</span>
+              </a>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Account -->
+        <div class="mb-lg">
+          <div class="text-xs font-semibold text-neutral-500 uppercase tracking-wider mb-sm px-sm">
+            Account
+          </div>
+          <ul class="space-y-xs">
+            <li>
+              <a href="/billing" class="nav-item" :class="{active: currentPath === '/billing'}">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                  <rect x="1" y="4" width="22" height="16" rx="2" ry="2"/>
+                  <line x1="1" y1="10" x2="23" y2="10"/>
+                </svg>
+                <span>Billing</span>
+                <span class="badge badge-primary ml-auto" :if="user.plan === 'trial'">Trial</span>
+              </a>
+            </li>
+            <li>
+              <a href="/settings" class="nav-item" :class="{active: currentPath === '/settings'}">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                  <circle cx="12" cy="12" r="3"/>
+                  <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1 1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/>
+                </svg>
+                <span>Settings</span>
+              </a>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Admin (if admin) -->
+        <div class="mb-lg" :if="user.role === 'admin'">
+          <div class="text-xs font-semibold text-neutral-500 uppercase tracking-wider mb-sm px-sm">
+            Admin
+          </div>
+          <ul class="space-y-xs">
+            <li>
+              <a href="/admin" class="nav-item" :class="{active: currentPath.startsWith('/admin')}">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                  <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
+                  <circle cx="8.5" cy="8.5" r="1.5"/>
+                  <path d="M20.4 14.5L16 10 4 20"/>
+                </svg>
+                <span>Admin Panel</span>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+
+      <!-- User Profile -->
+      <div class="mt-auto pt-lg border-t border-neutral-200">
+        <div class="dropdown">
+          <button class="w-full flex items-center gap-sm p-sm rounded-lg hover:bg-neutral-100 transition-colors" @click="toggleUserMenu">
+            <div class="avatar avatar-sm">
+              <img :src="user.avatar" :alt="user.name" :if="user.avatar">
+              <span :else>{user.name.charAt(0).toUpperCase()}</span>
+            </div>
+            <div class="flex-1 text-left">
+              <div class="font-medium text-sm">{user.name}</div>
+              <div class="text-xs text-neutral-500">{user.email}</div>
+            </div>
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor" class="text-neutral-400">
+              <path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="2" fill="none"/>
+            </svg>
+          </button>
+          
+          <div class="dropdown-menu">
+            <a href="/profile" class="dropdown-item">Profile</a>
+            <a href="/help" class="dropdown-item">Help & Support</a>
+            <div class="dropdown-divider"></div>
+            <button @click="logout" class="dropdown-item w-full text-left">Sign Out</button>
+          </div>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Main Content -->
+    <div class="sidebar-content">
+      <!-- Top Header -->
+      <header class="bg-white border-b border-neutral-200 px-lg py-md mb-lg">
+        <div class="flex items-center justify-between">
+          <!-- Mobile menu button -->
+          <button class="btn btn-ghost lg:hidden" @click="toggleSidebar">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+              <path d="M3 12h18M3 6h18M3 18h18" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+          </button>
+
+          <!-- Page Title -->
+          <div class="flex-1">
+            <h1 class="text-xl font-semibold text-neutral-900">{title}</h1>
+            <p class="text-sm text-neutral-600" :if="subtitle">{subtitle}</p>
+          </div>
+
+          <!-- Header Actions -->
+          <div class="flex items-center gap-sm">
+            <!-- Notifications -->
+            <div class="dropdown">
+              <button class="btn btn-ghost relative" @click="toggleNotifications">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                  <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/>
+                  <path d="M13.73 21a2 2 0 0 1-3.46 0"/>
+                </svg>
+                <span class="absolute -top-1 -right-1 w-2 h-2 bg-error-500 rounded-full" :if="unreadNotifications > 0"></span>
+              </button>
+              
+              <div class="dropdown-menu right-0 w-80">
+                <div class="px-md py-sm border-b border-neutral-200">
+                  <h3 class="font-medium">Notifications</h3>
+                </div>
+                <div class="max-h-80 overflow-y-auto">
+                  <div class="p-md text-center text-neutral-500" :if="notifications.length === 0">
+                    No new notifications
+                  </div>
+                  <div :for="notification in notifications" class="px-md py-sm border-b border-neutral-100 hover:bg-neutral-50">
+                    <div class="flex items-start gap-sm">
+                      <div class="w-2 h-2 bg-primary-500 rounded-full mt-2" :if="!notification.read"></div>
+                      <div class="flex-1">
+                        <p class="text-sm font-medium">{notification.title}</p>
+                        <p class="text-xs text-neutral-600">{notification.message}</p>
+                        <p class="text-xs text-neutral-500 mt-1">{notification.time}</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- User menu (mobile) -->
+            <div class="lg:hidden">
+              <div class="avatar avatar-sm">
+                <img :src="user.avatar" :alt="user.name" :if="user.avatar">
+                <span :else>{user.name.charAt(0).toUpperCase()}</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <!-- Main Content Area -->
+      <main class="px-lg pb-lg">
+        { yield }
+      </main>
+    </div>
+  </div>
+
+  <!-- Sidebar Overlay (mobile) -->
+  <div class="sidebar-overlay" id="sidebarOverlay" @click="closeSidebar"></div>
+
+  <!-- Secondary CSS -->
+  <link rel="stylesheet" href="/css/features.css">
+  <link rel="stylesheet" href="/css/animations.css">
+  
+  <!-- JavaScript -->
+  <script src="/js/auth.js"></script>
+  <script src="/js/dashboard.js"></script>
+  
+  <!-- Page-specific scripts -->
+  { page_scripts }
+
+  <style>
+    .nav-item {
+      display: flex;
+      align-items: center;
+      gap: var(--space-sm);
+      padding: var(--space-sm);
+      border-radius: var(--radius-lg);
+      color: var(--neutral-700);
+      text-decoration: none;
+      transition: all var(--transition-fast);
+      font-weight: 500;
+    }
+
+    .nav-item:hover {
+      background-color: var(--neutral-100);
+      color: var(--neutral-900);
+    }
+
+    .nav-item.active {
+      background-color: var(--primary-100);
+      color: var(--primary-700);
+    }
+
+    .nav-item svg {
+      width: 20px;
+      height: 20px;
+      stroke-width: 2;
+    }
+
+    /* Mobile navigation styles */
+    .mobile-nav {
+      position: absolute;
+      top: 100%;
+      left: 0;
+      right: 0;
+      background: white;
+      border-top: 1px solid var(--neutral-200);
+      padding: var(--space-lg);
+      transform: translateY(-100%);
+      opacity: 0;
+      visibility: hidden;
+      transition: all var(--transition-normal);
+    }
+
+    .mobile-nav.open {
+      transform: translateY(0);
+      opacity: 1;
+      visibility: visible;
+    }
+  </style>
+
+  <script>
+    // Dashboard state
+    const currentPath = window.location.pathname
+    const user = {
+      name: 'John Doe',
+      email: 'john@example.com',
+      avatar: null,
+      role: 'user',
+      plan: 'pro'
+    }
+
+    // Notifications
+    const notifications = [
+      {
+        id: 1,
+        title: 'Welcome to Nue SAAS!',
+        message: 'Get started by exploring your dashboard.',
+        time: '2 hours ago',
+        read: false
+      }
+    ]
+
+    const unreadNotifications = notifications.filter(n => !n.read).length
+
+    // UI state
+    let sidebarOpen = false
+    let userMenuOpen = false
+    let notificationsOpen = false
+
+    // Toggle functions
+    function toggleSidebar() {
+      const sidebar = document.getElementById('sidebar')
+      const overlay = document.getElementById('sidebarOverlay')
+      
+      sidebarOpen = !sidebarOpen
+      sidebar.classList.toggle('open', sidebarOpen)
+      overlay.classList.toggle('open', sidebarOpen)
+    }
+
+    function closeSidebar() {
+      const sidebar = document.getElementById('sidebar')
+      const overlay = document.getElementById('sidebarOverlay')
+      
+      sidebarOpen = false
+      sidebar.classList.remove('open')
+      overlay.classList.remove('open')
+    }
+
+    function toggleUserMenu() {
+      userMenuOpen = !userMenuOpen
+      // Handle dropdown logic
+    }
+
+    function toggleNotifications() {
+      notificationsOpen = !notificationsOpen
+      // Handle dropdown logic
+    }
+
+    function logout() {
+      // Handle logout
+      window.location.href = '/login'
+    }
+
+    // Close dropdowns when clicking outside
+    document.addEventListener('click', (e) => {
+      if (!e.target.closest('.dropdown')) {
+        userMenuOpen = false
+        notificationsOpen = false
+      }
+    })
+  </script>
+</body>
+</html>
