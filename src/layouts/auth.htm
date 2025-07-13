@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{title}} - {{name}}</title>
+  <meta name="description" content="{{description}}">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/css/auth.css">
+</head>
+<body class="auth-body">
+  <div class="auth-background">
+    <div class="auth-container">
+      <div class="auth-logo">
+        <a href="/">
+          <h1>{{name}}</h1>
+        </a>
+      </div>
+      
+      <main class="auth-main">
+        {{{ body }}}
+      </main>
+      
+      <div class="auth-footer">
+        <p>&copy; {{year}} {{company}}. All rights reserved.</p>
+      </div>
+    </div>
+  </div>
+  
+  <script src="/js/auth.js"></script>
+</body>
+</html>

@@ -1,0 +1,100 @@
+---
+title: Admin Dashboard
+description: Admin dashboard for managing the SAAS platform
+layout: admin
+---
+
+<div class="admin-header">
+  <h1>Admin Dashboard</h1>
+  <p>Manage users, analytics, and system settings</p>
+</div>
+
+<div class="admin-stats">
+  <div class="stat-card">
+    <h3>Total Users</h3>
+    <div class="stat-value">2,847</div>
+    <div class="stat-change">+12% from last month</div>
+  </div>
+  
+  <div class="stat-card">
+    <h3>Active Subscriptions</h3>
+    <div class="stat-value">1,234</div>
+    <div class="stat-change">+8% from last month</div>
+  </div>
+  
+  <div class="stat-card">
+    <h3>Monthly Revenue</h3>
+    <div class="stat-value">$45,678</div>
+    <div class="stat-change">+15% from last month</div>
+  </div>
+  
+  <div class="stat-card">
+    <h3>API Calls</h3>
+    <div class="stat-value">1.2M</div>
+    <div class="stat-change">+23% from last month</div>
+  </div>
+</div>
+
+<div class="admin-content">
+  <div class="admin-section">
+    <h2>Recent Users</h2>
+    <table class="admin-table">
+      <thead>
+        <tr>
+          <th>User</th>
+          <th>Email</th>
+          <th>Plan</th>
+          <th>Status</th>
+          <th>Joined</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>John Doe</td>
+          <td>john@example.com</td>
+          <td>Pro</td>
+          <td>Active</td>
+          <td>2024-02-15</td>
+          <td>
+            <button class="btn btn-sm btn-secondary">View</button>
+            <button class="btn btn-sm btn-danger">Suspend</button>
+          </td>
+        </tr>
+        <tr>
+          <td>Jane Smith</td>
+          <td>jane@example.com</td>
+          <td>Starter</td>
+          <td>Active</td>
+          <td>2024-02-14</td>
+          <td>
+            <button class="btn btn-sm btn-secondary">View</button>
+            <button class="btn btn-sm btn-danger">Suspend</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  
+  <div class="admin-section">
+    <h2>System Health</h2>
+    <div class="health-indicators">
+      <div class="health-item">
+        <span class="status-dot status-green"></span>
+        <span>API Response Time: 45ms</span>
+      </div>
+      <div class="health-item">
+        <span class="status-dot status-green"></span>
+        <span>Database: Healthy</span>
+      </div>
+      <div class="health-item">
+        <span class="status-dot status-yellow"></span>
+        <span>Storage: 78% used</span>
+      </div>
+      <div class="health-item">
+        <span class="status-dot status-green"></span>
+        <span>Email Service: Online</span>
+      </div>
+    </div>
+  </div>
+</div>

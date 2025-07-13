@@ -1,0 +1,73 @@
+---
+title: Profile
+description: Manage your user profile and personal information
+layout: app
+---
+
+<div class="app-header">
+  <h1>Profile</h1>
+  <p>Manage your profile information and avatar</p>
+</div>
+
+<div class="profile-container">
+  <div class="profile-card">
+    <div class="profile-avatar">
+      <img src="/img/avatar-placeholder.png" alt="Profile Avatar" class="avatar">
+      <button class="btn btn-secondary btn-sm">Change Avatar</button>
+    </div>
+    
+    <div class="profile-info">
+      <h2>John Doe</h2>
+      <p class="profile-email">john@example.com</p>
+      <p class="profile-role">Pro User</p>
+      <p class="profile-joined">Member since January 2023</p>
+    </div>
+  </div>
+  
+  <div class="profile-form">
+    <h2>Personal Information</h2>
+    <form>
+      <div class="form-row">
+        <div class="form-group">
+          <label for="first-name">First Name</label>
+          <input type="text" id="first-name" name="first-name" value="John">
+        </div>
+        
+        <div class="form-group">
+          <label for="last-name">Last Name</label>
+          <input type="text" id="last-name" name="last-name" value="Doe">
+        </div>
+      </div>
+      
+      <div class="form-group">
+        <label for="email">Email Address</label>
+        <input type="email" id="email" name="email" value="john@example.com">
+      </div>
+      
+      <div class="form-group">
+        <label for="phone">Phone Number</label>
+        <input type="tel" id="phone" name="phone" value="+1 (555) 123-4567">
+      </div>
+      
+      <div class="form-group">
+        <label for="company">Company</label>
+        <input type="text" id="company" name="company" value="Acme Corp">
+      </div>
+      
+      <div class="form-group">
+        <label for="job-title">Job Title</label>
+        <input type="text" id="job-title" name="job-title" value="Software Engineer">
+      </div>
+      
+      <div class="form-group">
+        <label for="bio">Bio</label>
+        <textarea id="bio" name="bio" rows="4" placeholder="Tell us about yourself..."></textarea>
+      </div>
+      
+      <div class="form-actions">
+        <button type="submit" class="btn btn-primary">Save Changes</button>
+        <button type="button" class="btn btn-secondary">Cancel</button>
+      </div>
+    </form>
+  </div>
+</div>
