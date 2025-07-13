@@ -54,7 +54,7 @@ export default {
   // CSS processing
   css: {
     // Primary CSS (critical path - inlined)
-    primary: ['base.css', 'layout.css', 'components.css'],
+    primary: ['base.css', 'layout.css', 'components.css', 'utilities.css'],
     // Secondary CSS (loaded after)
     secondary: ['features.css', 'animations.css']
   },
@@ -62,7 +62,7 @@ export default {
   // JavaScript modules
   js: {
     // Core app functionality
-    core: ['auth.js', 'api.js', 'utils.js'],
+    core: ['auth.js', 'api.js', 'utils.js', 'theme-toggle.js'],
     // Page-specific scripts
     pages: {
       '/dashboard': ['dashboard.js', 'charts.js'],
