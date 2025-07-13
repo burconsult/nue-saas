@@ -41,9 +41,27 @@ html {
   --neutral-900: oklch(0.15 0.00 0);
   --neutral-950: oklch(0.08 0.00 0);
   
+  --success-100: oklch(0.95 0.05 145);
   --success-500: oklch(0.65 0.15 145);
+  --success-600: oklch(0.55 0.18 145);
+  --warning-100: oklch(0.95 0.05 85);
   --warning-500: oklch(0.75 0.15 85);
+  --warning-600: oklch(0.65 0.18 85);
+  --error-100: oklch(0.95 0.05 25);
   --error-500: oklch(0.60 0.20 25);
+  --error-600: oklch(0.50 0.23 25);
+  
+  --blue-100: oklch(0.95 0.05 250);
+  --blue-400: oklch(0.65 0.15 250);
+  --blue-600: oklch(0.55 0.18 250);
+  --green-100: oklch(0.95 0.05 145);
+  --green-600: oklch(0.55 0.18 145);
+  --purple-100: oklch(0.95 0.05 300);
+  --purple-600: oklch(0.55 0.18 300);
+  
+  --primary-100: oklch(0.95 0.02 280);
+  --primary-200: oklch(0.90 0.04 280);
+  --primary-400: oklch(0.65 0.15 280);
   
   /* Typography - Perfect Fifth Scale (1.5) */
   --font-size-xs: clamp(0.64rem, 0.61rem + 0.15vw, 0.75rem);
@@ -103,9 +121,32 @@ html {
   --z-toast: 1080;
 }
 
-/* Dark mode support */
+/* Dark mode support with data attribute */
+[data-theme="dark"] {
+  --neutral-0: oklch(0.08 0.00 0);
+  --neutral-50: oklch(0.10 0.00 0);
+  --neutral-100: oklch(0.13 0.00 0);
+  --neutral-200: oklch(0.18 0.00 0);
+  --neutral-300: oklch(0.25 0.00 0);
+  --neutral-400: oklch(0.35 0.00 0);
+  --neutral-500: oklch(0.45 0.00 0);
+  --neutral-600: oklch(0.55 0.00 0);
+  --neutral-700: oklch(0.65 0.00 0);
+  --neutral-800: oklch(0.75 0.00 0);
+  --neutral-900: oklch(0.85 0.00 0);
+  --neutral-950: oklch(0.92 0.00 0);
+  
+  /* Adjusted shadows for dark mode */
+  --shadow-xs: 0 1px 2px 0 rgb(0 0 0 / 0.3);
+  --shadow-sm: 0 1px 3px 0 rgb(0 0 0 / 0.4), 0 1px 2px -1px rgb(0 0 0 / 0.4);
+  --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.4), 0 2px 4px -2px rgb(0 0 0 / 0.4);
+  --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.4), 0 4px 6px -4px rgb(0 0 0 / 0.4);
+  --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.4), 0 8px 10px -6px rgb(0 0 0 / 0.4);
+}
+
+/* System preference fallback */
 @media (prefers-color-scheme: dark) {
-  :root {
+  :root:not([data-theme="light"]) {
     --neutral-0: oklch(0.08 0.00 0);
     --neutral-50: oklch(0.10 0.00 0);
     --neutral-100: oklch(0.13 0.00 0);
@@ -118,6 +159,13 @@ html {
     --neutral-800: oklch(0.75 0.00 0);
     --neutral-900: oklch(0.85 0.00 0);
     --neutral-950: oklch(0.92 0.00 0);
+    
+    /* Adjusted shadows for dark mode */
+    --shadow-xs: 0 1px 2px 0 rgb(0 0 0 / 0.3);
+    --shadow-sm: 0 1px 3px 0 rgb(0 0 0 / 0.4), 0 1px 2px -1px rgb(0 0 0 / 0.4);
+    --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.4), 0 2px 4px -2px rgb(0 0 0 / 0.4);
+    --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.4), 0 4px 6px -4px rgb(0 0 0 / 0.4);
+    --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.4), 0 8px 10px -6px rgb(0 0 0 / 0.4);
   }
 }
 
@@ -132,6 +180,7 @@ body {
   background-color: var(--neutral-0);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  transition: background-color var(--transition-normal), color var(--transition-normal);
 }
 
 /* Headings */
@@ -273,3 +322,10 @@ input, textarea, select {
 .text-success { color: var(--success-500); }
 .text-warning { color: var(--warning-500); }
 .text-error { color: var(--error-500); }
+
+/* Theme transition */
+* {
+  transition: background-color var(--transition-normal), 
+              border-color var(--transition-normal), 
+              color var(--transition-normal);
+}
