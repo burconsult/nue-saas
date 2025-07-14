@@ -1,0 +1,77 @@
+---
+title: Settings
+description: Manage your account settings and preferences
+layout: app
+---
+
+<div class="app-header">
+  <h1>Settings</h1>
+  <p>Manage your account settings and preferences</p>
+</div>
+
+<div class="settings-container">
+  <div class="settings-nav">
+    <ul>
+      <li><a href="#general" class="active">General</a></li>
+      <li><a href="#security">Security</a></li>
+      <li><a href="#notifications">Notifications</a></li>
+      <li><a href="#integrations">Integrations</a></li>
+    </ul>
+  </div>
+  
+  <div class="settings-content">
+    <section id="general" class="settings-section">
+      <h2>General Settings</h2>
+      <form>
+        <div class="form-group">
+          <label for="name">Display Name</label>
+          <input type="text" id="name" name="name" value="John Doe">
+        </div>
+        
+        <div class="form-group">
+          <label for="email">Email Address</label>
+          <input type="email" id="email" name="email" value="john@example.com">
+        </div>
+        
+        <div class="form-group">
+          <label for="timezone">Timezone</label>
+          <select id="timezone" name="timezone">
+            <option value="UTC">UTC</option>
+            <option value="America/New_York">Eastern Time</option>
+            <option value="America/Los_Angeles">Pacific Time</option>
+          </select>
+        </div>
+        
+        <button type="submit" class="btn btn-primary">Save Changes</button>
+      </form>
+    </section>
+    
+    <section id="security" class="settings-section">
+      <h2>Security Settings</h2>
+      <form>
+        <div class="form-group">
+          <label for="current-password">Current Password</label>
+          <input type="password" id="current-password" name="current-password">
+        </div>
+        
+        <div class="form-group">
+          <label for="new-password">New Password</label>
+          <input type="password" id="new-password" name="new-password">
+        </div>
+        
+        <div class="form-group">
+          <label for="confirm-password">Confirm New Password</label>
+          <input type="password" id="confirm-password" name="confirm-password">
+        </div>
+        
+        <button type="submit" class="btn btn-primary">Update Password</button>
+      </form>
+      
+      <div class="two-factor">
+        <h3>Two-Factor Authentication</h3>
+        <p>Add an extra layer of security to your account</p>
+        <button class="btn btn-secondary">Enable 2FA</button>
+      </div>
+    </section>
+  </div>
+</div>

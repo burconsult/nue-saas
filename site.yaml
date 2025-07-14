@@ -1,0 +1,44 @@
+name: Nue SAAS Boilerplate
+tagline: Complete SAAS Boilerplate built with Nue.js
+description: A complete, production-ready SAAS boilerplate built with Nue.js - the standards-first web framework.
+lang: en
+author: Nue SAAS Boilerplate Team
+email: hello@nuesaas.com
+version: 1.0.0
+
+# Site configuration
+theme: dark
+favicon: favicon.svg
+domain: localhost:8080
+port: 8080
+
+# Social links
+social:
+  twitter: "@nuesaas"
+  github: "nuejs/nue-saas"
+  linkedin: "company/nue-saas"
+
+# Navigation structure
+navigation:
+  - title: Home
+    url: /
+  - title: Features
+    url: /features
+  - title: Pricing
+    url: /pricing
+  - title: Contact
+    url: /contact
+  - title: Docs
+    url: /docs
+
+# Build settings
+build:
+  minify: true
+  cache: true
+  bundle: true
+
+# Global variables
+globals:
+  company: "Nue SAAS Inc."
+  year: 2024
+  current_year: 2024
