@@ -3,6 +3,20 @@ export default {
   name: 'Nue SAAS Boilerplate',
   domain: 'localhost:8080',
   
+  // Global site data (moved from globals object)
+  title: 'Nue SAAS',
+  description: 'Modern SAAS application built with Nue.js',
+  company: 'Nue SAAS Inc.',
+  year: new Date().getFullYear(),
+  social: {
+    twitter: '@nuesaas',
+    github: 'nuejs/nue-saas',
+    linkedin: 'company/nue-saas'
+  },
+  
+  // Global directories containing shared assets/components
+  globals: [],
+  
   // Build settings
   build: {
     minify: true,
@@ -36,19 +50,6 @@ export default {
     // Admin routes
     '/admin': 'admin/dashboard.htm',
     '/admin/*': 'admin/*.htm'
-  },
-
-  // Global data available to all pages
-  globals: {
-    title: 'Nue SAAS',
-    description: 'Modern SAAS application built with Nue.js',
-    company: 'Nue SAAS Inc.',
-    year: new Date().getFullYear(),
-    social: {
-      twitter: '@nuesaas',
-      github: 'nuejs/nue-saas',
-      linkedin: 'company/nue-saas'
-    }
   },
 
   // CSS processing
