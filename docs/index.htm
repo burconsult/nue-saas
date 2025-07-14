@@ -1,0 +1,100 @@
+---
+title: Documentation
+description: Complete documentation for the Nue SAAS Boilerplate
+layout: docs
+---
+
+<div class="docs-header">
+  <h1>Documentation</h1>
+  <p>Everything you need to know about the Nue SAAS Boilerplate</p>
+</div>
+
+<div class="docs-content">
+  <div class="docs-nav">
+    <h3>Getting Started</h3>
+    <ul>
+      <li><a href="#introduction">Introduction</a></li>
+      <li><a href="#quick-start">Quick Start</a></li>
+      <li><a href="#installation">Installation</a></li>
+      <li><a href="#configuration">Configuration</a></li>
+    </ul>
+    
+    <h3>Features</h3>
+    <ul>
+      <li><a href="#authentication">Authentication</a></li>
+      <li><a href="#billing">Billing & Payments</a></li>
+      <li><a href="#dashboard">Dashboard</a></li>
+      <li><a href="#api">API Reference</a></li>
+    </ul>
+    
+    <h3>Deployment</h3>
+    <ul>
+      <li><a href="#hosting">Hosting</a></li>
+      <li><a href="#domains">Custom Domains</a></li>
+      <li><a href="#ssl">SSL Setup</a></li>
+    </ul>
+  </div>
+  
+  <div class="docs-main">
+    <section id="introduction">
+      <h2>Introduction</h2>
+      <p>The Nue SAAS Boilerplate is a complete, production-ready foundation for building SAAS applications. Built with Nue.js, it provides all the essential features you need to launch your SAAS product quickly.</p>
+      
+      <h3>Key Features</h3>
+      <ul>
+        <li>Complete authentication system with OAuth support</li>
+        <li>Stripe integration for billing and subscriptions</li>
+        <li>Modern, responsive dashboard</li>
+        <li>Admin panel for user management</li>
+        <li>API with rate limiting and authentication</li>
+        <li>Real-time analytics and monitoring</li>
+      </ul>
+    </section>
+    
+    <section id="quick-start">
+      <h2>Quick Start</h2>
+      <p>Get up and running in minutes with these simple steps:</p>
+      
+      <div class="code-block">
+        <pre><code># Clone the repository
+git clone https://github.com/nuejs/nue-saas-boilerplate.git
+cd nue-saas-boilerplate
+
+# Install dependencies
+npm install
+
+# Start development server
+npm run dev</code></pre>
+      </div>
+      
+      <p>Your application will be available at <code>http://localhost:8080</code></p>
+    </section>
+    
+    <section id="installation">
+      <h2>Installation</h2>
+      <p>Detailed installation instructions for different environments.</p>
+      
+      <h3>Prerequisites</h3>
+      <ul>
+        <li>Node.js 18+ or Bun 1.0+</li>
+        <li>PostgreSQL or MySQL database</li>
+        <li>Stripe account for payments</li>
+        <li>Email service (SendGrid, Mailgun, etc.)</li>
+      </ul>
+    </section>
+    
+    <section id="configuration">
+      <h2>Configuration</h2>
+      <p>Configure your application with environment variables and settings.</p>
+      
+      <h3>Environment Variables</h3>
+      <div class="code-block">
+        <pre><code>DATABASE_URL=postgresql://user:password@localhost:5432/database
+STRIPE_SECRET_KEY=sk_test_...
+STRIPE_PUBLISHABLE_KEY=pk_test_...
+EMAIL_SERVICE_API_KEY=your-email-service-key
+JWT_SECRET=your-secret-key</code></pre>
+      </div>
+    </section>
+  </div>
+</div>
