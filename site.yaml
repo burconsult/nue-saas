@@ -12,6 +12,11 @@ favicon: favicon.svg
 domain: localhost:8080
 port: 8080
 
+# Global site data (moved from globals object)
+company: "Nue SAAS Inc."
+year: 2024
+current_year: 2024
+
 # Social links
 social:
   twitter: "@nuesaas"
@@ -37,8 +42,5 @@ build:
   cache: true
   bundle: true
 
-# Global variables
-globals:
-  company: "Nue SAAS Inc."
-  year: 2024
-  current_year: 2024
+# Global directories containing shared assets/components
+globals: []

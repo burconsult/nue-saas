@@ -97,3 +97,29 @@ bun run serve
 ```
 
 The project is now much more complete and closer to being fully functional!
+
+# Fixes Summary
+
+## Nue Serve Spread Syntax Error (Fixed)
+
+**Problem**: Running `nue serve` resulted in a TypeError: "Spread syntax requires ...iterable[Symbol.iterator] to be a function" in `/node_modules/nuekit/src/site.js` at line 269.
+
+**Root Cause**: The `globals` property in configuration files (`nue.config.js` and `site.yaml`) was defined as an object containing site metadata, but nuekit expects `globals` to be an array of directory paths where global assets and components are stored.
+
+**Error Location**: 
+```javascript
+const dirs = [...self.globals, ...getDirs(dir)]
+```
+
+**Solution**: 
+1. Moved global site data (title, description, company, etc.) from the `globals` object to the root level of both configuration files
+2. Changed `globals` to be an empty array `[]` as expected by nuekit
+3. Installed missing `esbuild` bundler dependency
+4. Created required `.dist/dev/@nue` directory structure
+
+**Files Modified**:
+- `nue.config.js`: Restructured globals configuration
+- `site.yaml`: Restructured globals configuration  
+- `package.json`: Added esbuild dependency
+
+**Result**: `nue serve` now runs successfully without errors.

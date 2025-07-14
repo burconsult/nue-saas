@@ -10,10 +10,17 @@
     "serve": "nue serve",
     "stats": "nue stats"
   },
-  "keywords": ["nue", "saas", "boilerplate", "webapp", "frontend"],
+  "keywords": [
+    "nue",
+    "saas",
+    "boilerplate",
+    "webapp",
+    "frontend"
+  ],
   "author": "Nue SAAS Boilerplate",
   "license": "MIT",
   "dependencies": {
+    "esbuild": "^0.25.6",
     "nuekit": "^0.1.1"
   },
   "devDependencies": {
