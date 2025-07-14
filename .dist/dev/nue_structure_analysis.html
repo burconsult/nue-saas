@@ -1,0 +1,114 @@
+<!doctype html>
+
+<html lang="en" dir="ltr">
+
+  <head>
+    <meta charset="utf-8">
+<title>Home</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="Modern SAAS application built with Nue.js">
+<meta name="author" content="Nue SAAS Boilerplate Team">
+<link rel="shortcut icon" type="image/svg+xml" src="favicon.svg">
+<script src="/@nue/hotreload.js" type="module"></script>
+    
+  </head>
+
+  <body>
+    
+    
+<p>{@ components/hero.htm @}
+{@ components/features.htm @}
+{@ components/stats.htm @}
+{@ components/testimonials.htm @}
+{@ components/pricing.htm @}
+{@ components/cta.htm @}</p>
+<pre><code>
+### Key NueJS Concepts
+1. **Frontmatter**: YAML metadata at the top of `.htm` files
+2. **Layout System**: Pages reference layouts in `src/layouts/`
+3. **Component Includes**: `{@ path/to/component.htm @}` syntax
+4. **Separation of Concerns**: Content, layout, styling, and logic are separate
+
+## Routing Configuration (nue.config.js)
+```javascript
+routes: {
+  &apos;/&apos;: &apos;index.htm&apos;,
+  &apos;/features&apos;: &apos;features.htm&apos;,
+  &apos;/pricing&apos;: &apos;pricing.htm&apos;,
+  &apos;/contact&apos;: &apos;contact.htm&apos;,
+  &apos;/login&apos;: &apos;auth/login.htm&apos;,
+  &apos;/signup&apos;: &apos;auth/signup.htm&apos;,
+  &apos;/dashboard&apos;: &apos;app/dashboard.htm&apos;,
+  // ... more routes
+}
+</code></pre>
+<h2>Why This Approach Works</h2>
+<ol>
+<li><strong>Standards-First</strong>: NueJS prioritizes web standards over framework abstractions</li>
+<li><strong>File-Based Routing</strong>: Similar to Next.js but with explicit configuration</li>
+<li><strong>Progressive Enhancement</strong>: Static HTML enhanced with JavaScript islands</li>
+<li><strong>Content-Focused</strong>: Optimized for content-heavy sites and web apps</li>
+</ol>
+<h2>Next Steps</h2>
+<ol>
+<li><strong>Test Server</strong>: Run <code>npm run serve</code> or <code>bun run serve</code> to test</li>
+<li><strong>Build Process</strong>: Use <code>npm run build</code> to generate static files</li>
+<li><strong>Development</strong>: Use <code>npm run dev</code> for development with hot reloading</li>
+</ol>
+<h2>Common NueJS Commands</h2>
+<pre><code class="language-bash"># Development server with hot reloading
+npm run dev
+
+# Production build
+npm run build
+
+# Serve built files
+npm run serve
+
+# View bundle statistics
+npm run stats
+</code></pre>
+<h2>Current Status &#x2705;</h2>
+<h3>&#x2705; <strong>FIXED: Server Infrastructure</strong></h3>
+<ul>
+<li>&#x2705; Bun runtime installed and working</li>
+<li>&#x2705; NueJS server is running (process ID 4159)</li>
+<li>&#x2705; Server responds on <a href="http://localhost:8080">http://localhost:8080</a> (no more connection refused)</li>
+</ul>
+<h3>&#x2705; <strong>FIXED: File Structure</strong></h3>
+<ul>
+<li>&#x2705; Pages moved from <code>src/pages/</code> to root directory</li>
+<li>&#x2705; Nested pages properly organized in subdirectories</li>
+<li>&#x2705; Components and layouts remain in <code>src/</code> as expected</li>
+</ul>
+<h3>&#x26a0;&#xfe0f; <strong>REMAINING ISSUE: 404 Responses</strong></h3>
+<p>The server is running but returns &quot;404 | Not found&quot; for all routes. This suggests:</p>
+<ol>
+<li><strong>Possible routing configuration mismatch</strong></li>
+<li><strong>Template processing issues</strong></li>
+<li><strong>Build step might be required</strong></li>
+</ol>
+<h3>Next Debugging Steps</h3>
+<ol>
+<li><p><strong>Try building first</strong>:</p>
+<pre><code class="language-bash">npm run build
+</code></pre>
+</li>
+<li><p><strong>Check if development mode works better</strong>:</p>
+<pre><code class="language-bash">npm run dev
+</code></pre>
+</li>
+<li><p><strong>Verify routing configuration matches file structure</strong></p>
+</li>
+<li><p><strong>Check if layouts in <code>src/layouts/</code> are correctly configured</strong></p>
+</li>
+<li><p><strong>Review NueJS documentation for proper serve vs dev vs build workflow</strong></p>
+</li>
+</ol>
+<p>The key structural fixes have been completed - NueJS now has the correct file organization that differs significantly from React&apos;s approach. The remaining 404 issue is likely a configuration or build process matter rather than a structural problem.</p>
+<p>This structure analysis shows that NueJS is fundamentally different from React in its approach to web development, favoring file-based routing, HTML templates, and web standards over JavaScript-heavy component frameworks.</p>
+
+    
+  </body>
+
+</html>
